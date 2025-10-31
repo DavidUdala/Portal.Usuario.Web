@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { AuthService } from '../../services/auth.service';
 
 export interface PeriodicElement {
   name: string;
@@ -37,15 +38,18 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
   ngOnInit(): void {
     this.resultsLength = ELEMENT_DATA.length;
   }
 
   logout() {
-    this.router.navigate(["/login"]);
+    this.authService.logout();
+    this.router.navigate([""]);
   }
-
+  redirectToHome(){
+    this.router.navigate(["/home"]);
+  }
   resultsLength = 0;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
