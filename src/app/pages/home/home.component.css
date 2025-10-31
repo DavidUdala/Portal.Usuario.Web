@@ -1,0 +1,37 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.banner img{
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.filter mat-form-field {
+  width: 100%;
+}
+
+.filter {
+  display: flex;
+  width: 30%;
+  justify-self: end;
+}
+
+.content{
+  margin: 0 100px;
+}
+
+th{
+  background-color: blue;
+}

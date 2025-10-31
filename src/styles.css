@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.img-logo {
+    width: 300px;
+    margin-bottom: 15px;
+}
+
+
+
+.mat-mdc-header-cell {
+    color: white !important;
+    font-weight: bold;
+    background-color: #008CFF !important;
+
+}
+
+.mat-mdc-row:hover {
+  background-color: #CCE9FF;
+  transition: background-color 0.2s ease;
+}
