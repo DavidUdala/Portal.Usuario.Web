@@ -9,6 +9,13 @@
             <input matInput placeholder="Ex. Gabriel Oliveira, William Silva">
         </mat-form-field>
         <mat-form-field>
+            <mat-label>Data Nascimento</mat-label>
+            <input matInput [matDatepicker]="picker">
+              <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
             <mat-label>Nome de Usuário</mat-label>
             <input matInput placeholder="Ex. gabriel1995, joão2809">
         </mat-form-field>
