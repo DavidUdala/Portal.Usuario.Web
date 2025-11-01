@@ -7,6 +7,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { UserLoginInput } from '../../interfaces/userLoginInput';
+
+
 @Component({
   selector: 'app-login',
   imports: [FormsModule, MatFormFieldModule, MatInputModule,
@@ -16,10 +19,13 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
   constructor(private router: Router, private auth: AuthService) { }
-  Auth() {
+  userLoginInput: UserLoginInput = new UserLoginInput();
 
-    this.auth.login();
-    if (this.auth.isLoggedIn())
-      this.router.navigate(['/home']);
+  Auth() {
+    this.auth.login(this.userLoginInput)
+      .subscribe(resp => {
+        if (resp.success && this.auth.isLoggedIn())
+          this.router.navigate(['/home']);
+      });
   }
 }

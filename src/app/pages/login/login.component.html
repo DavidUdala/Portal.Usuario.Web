@@ -5,11 +5,11 @@
         </div>
         <mat-form-field>
             <mat-label>Usuario</mat-label>
-            <input matInput placeholder="Ex. meulogin">
+            <input [(ngModel)]="userLoginInput.username" name="username" matInput placeholder="Ex. meulogin">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Senha</mat-label>
-            <input matInput type="password">
+            <input [(ngModel)]="userLoginInput.password" name="password"  matInput type="password">
         </mat-form-field>
         <button (click)="Auth()" mat-button matButton="filled">ENTRAR</button>
         <a href="/usersignup">Ainda não possui acesso? Crie sua conta agora</a>
