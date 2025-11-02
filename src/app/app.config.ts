@@ -6,6 +6,7 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './auth.interceptor';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, NativeDateAdapter } from '@angular/material/core';
+import { NotificationService } from './services/notification.service';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true })
@@ -14,6 +15,7 @@ export const appConfig: ApplicationConfig = {
     , provideHttpClient(
       withInterceptors([authInterceptor])
     ),
+    NotificationService,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     { provide: DateAdapter, useClass: NativeDateAdapter, deps: [MAT_DATE_LOCALE] },

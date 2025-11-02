@@ -39,8 +39,11 @@
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">Nenhum dado encontrado para "{{input.value}}"</td>
+            </tr>
         </table>
-        <mat-paginator [length]="resultsLength" [pageSize]="5" 
+        <mat-paginator [length]="resultsLength" [pageSize]="5"
             aria-label="Select page of Users search results"></mat-paginator>
     </div>
 </div>

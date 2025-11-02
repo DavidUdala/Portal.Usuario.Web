@@ -10,6 +10,8 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { UserService } from '../../services/user.service';
 import { PostUserInput } from '../../interfaces/postUserInput';
 import { CommonModule } from '@angular/common';
+import { NotificationService } from '../../services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usersignup',
@@ -21,7 +23,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './usersignup.component.css'
 })
 export class UsersignupComponent implements OnInit {
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private notficationService: NotificationService, private router: Router) { }
 
   user: PostUserInput = new PostUserInput();
   userForm!: FormGroup;
@@ -41,8 +43,10 @@ export class UsersignupComponent implements OnInit {
 
       this.userService.create(this.user)
         .subscribe(resp => {
-          if (resp.success)
-            console.log(resp.message);
+          this.notficationService.send(resp.message);
+          if (resp.success) {
+            this.router.navigate(["/Login"]);
+          }
         })
     }
   }

@@ -1,17 +1,26 @@
 <div class="container">
-    <form>
+    <form (submit)="Auth()" [formGroup]="userForm">
         <div class="img-logo">
             <img src="logo-uds.svg" alt="">
         </div>
         <mat-form-field>
             <mat-label>Usuario</mat-label>
-            <input [(ngModel)]="userLoginInput.username" name="username" matInput placeholder="Ex. beltrano@uds.com">
+            <input formControlName="username" matInput placeholder="Ex. beltrano@uds.com">
+            <mat-error *ngIf="userForm.get('username')?.hasError('required')">
+                Usuário é obrigatório
+            </mat-error>
+            <mat-error *ngIf="userForm.get('username')?.hasError('email')">
+                Email inválido
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Senha</mat-label>
-            <input [(ngModel)]="userLoginInput.password" name="password"  matInput type="password">
+            <input formControlName="password" matInput type="password">
+            <mat-error *ngIf="userForm.get('password')?.hasError('required')">
+                Senha é obrigatório
+            </mat-error>
         </mat-form-field>
-        <button (click)="Auth()" mat-button matButton="filled">ENTRAR</button>
+        <button mat-button matButton="filled">ENTRAR</button>
         <a href="/usersignup">Ainda não possui acesso? Crie sua conta agora</a>
     </form>
     <div class="logo">
