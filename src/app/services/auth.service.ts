@@ -19,7 +19,7 @@ export class AuthService {
     return this.http.post<RequestResult<string>>(this.apiUrl, input)
       .pipe(
         tap(resp => {
-          if (resp.success){
+          if (resp.success) {
             localStorage.setItem(this.tokenKey, resp.data!);
           }
         })

@@ -1,3 +1,4 @@
+
 export class UserLoginInput {
     username: string = "";
     password: string = "";

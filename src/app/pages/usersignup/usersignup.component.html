@@ -6,26 +6,26 @@
         <h3>Cadastre-se para acessar o portal.</h3>
         <mat-form-field>
             <mat-label>Nome Completo</mat-label>
-            <input matInput placeholder="Ex. Gabriel Oliveira, William Silva">
+            <input [(ngModel)]="user.name" name="name" matInput placeholder="Ex. Gabriel Oliveira, William Silva">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Data Nascimento</mat-label>
-            <input matInput [matDatepicker]="picker">
-              <mat-hint>DD/MM/YYYY</mat-hint>
+            <input [(ngModel)]="user.birthDay" name="birthDay" matInput [matDatepicker]="picker">
+            <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Nome de Usuário</mat-label>
-            <input matInput placeholder="Ex. gabriel1995, joão2809">
+            <mat-label>Email</mat-label>
+            <input [(ngModel)]="user.email" name="email" matInput placeholder="Ex. fulano@uds.com">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Senha</mat-label>
-            <input matInput type="password">
+            <input [(ngModel)]="user.password" name="password" matInput type="password">
         </mat-form-field>
         <div class="buttons">
             <a href="/" mat-button>Voltar</a>
-            <button mat-button matButton="filled">Cadastre-se</button>
+            <button (click)="register()" mat-button matButton="filled">Cadastre-se</button>
         </div>
     </form>
 </div>
