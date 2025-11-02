@@ -5,13 +5,14 @@ import { Observable, Subscription, tap } from 'rxjs';
 import { RequestResult } from '../interfaces/requestResult';
 import { jwtDecode } from 'jwt-decode';
 import { TokenPayload } from '../interfaces/tokenPayload';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private tokenKey = 'auth_token';
-  private apiUrl = 'https://localhost:7070/api/authentication/login';
+  private apiUrl = `${environment.apiUrl}/authentication/login`;
 
   constructor(private http: HttpClient) { }
 

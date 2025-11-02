@@ -5,13 +5,14 @@ import { RequestResult } from '../interfaces/requestResult';
 import { PagedResult } from '../interfaces/pagedResult';
 import { UserOutput } from '../interfaces/userOutput';
 import { PostUserInput } from '../interfaces/postUserInput';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private apiUrl = 'https://localhost:7070/api/users/';
+  private apiUrl = `${environment.apiUrl}/users/`;
 
   constructor(private http: HttpClient) { }
 

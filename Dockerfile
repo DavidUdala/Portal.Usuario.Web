@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npx ng build --configuration production
+RUN npx ng build Portal.Usuario.Web --configuration production
 
 # Etapa 2: Servir com Nginx
 FROM nginx:alpine
