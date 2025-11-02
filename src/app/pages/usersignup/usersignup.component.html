@@ -14,9 +14,10 @@
                 Nome deve ter pelo menos 3 caracteres
             </mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="fill">
             <mat-label>Data Nascimento</mat-label>
-            <input formControlName="birthDay" matInput [matDatepicker]="picker">
+            <input matInput [matDatepicker]="picker" formControlName="birthDay" placeholder="DD/MM/AAAA"
+                (dateChange)="onDateChange($event)" (input)="onInputChange($event)">
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>

@@ -5,7 +5,7 @@ import { FormControl, FormGroup, FormsModule, Validators, ReactiveFormsModule } 
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { UserService } from '../../services/user.service';
 import { PostUserInput } from '../../interfaces/postUserInput';
@@ -36,7 +36,25 @@ export class UsersignupComponent implements OnInit {
       birthDay: new FormControl('', [Validators.required, Validators.maxLength(10)])
     })
   }
+  onDateChange(event: MatDatepickerInputEvent<Date>) {
+    this.userForm.get('birthDay')?.setValue(event.value);
+  }
 
+  // Se digitar manualmente no formato DD/MM/YYYY, convertemos para Date
+  onInputChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const value = input.value;
+
+    if (/^\d{2}\/\d{2}\/\d{4}$/.test(value)) {
+      const [day, month, year] = value.split('/').map(Number);
+      const date = new Date(year, month - 1, day);
+
+      if (!isNaN(date.getTime())) {
+        // Evita loop infinito no valueChanges
+        this.userForm.get('birthDay')?.setValue(date, { emitEvent: false });
+      }
+    }
+  }
   register() {
     if (this.userForm.valid) {
       this.user = this.userForm.value as PostUserInput;
