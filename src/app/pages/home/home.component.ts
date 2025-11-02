@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { UserOutput } from '../../interfaces/userOutput';
@@ -17,27 +17,32 @@ import { UserOutput } from '../../interfaces/userOutput';
   styleUrl: './home.component.css'
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
   resultsLength: number = 0;
-  pageSize: number = 0;
+  pageSize: number = 5;
   dataSource: MatTableDataSource<UserOutput> = new MatTableDataSource<UserOutput>();
   displayedColumns: string[] = ['name', 'email', 'birthDay', 'dateCreated'];
 
+  @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator();
+
   constructor(private router: Router, private authService: AuthService, private userService: UserService) { }
   ngOnInit(): void {
-    this.getUsers("")
+    this.getUsers("", 0, this.pageSize);
+  }
+  ngAfterViewInit(): void {
+    this.paginator.page.subscribe(() => {
+      this.getUsers("", this.paginator.pageIndex, this.paginator.pageSize);
+    });
+
   }
 
-  getUsers(term: string) {
-    this.userService.getBy(term)
+  getUsers(term: string, pageIndex: number = 0, pageSize: number = 5) {
+    this.userService.getBy(term, pageIndex + 1, pageSize)
       .subscribe(resp => {
-        if (resp.success) {
-          this.dataSource = new MatTableDataSource(resp.data?.data!);
-          this.resultsLength = resp.data?.totalRecords!;
-          this.pageSize = resp.data?.pageSize!;
-        }
-      })
+        this.dataSource.data = resp.data?.data!;
+        this.resultsLength = resp.data?.totalRecords!;
+      });
   }
 
   logout() {
@@ -51,6 +56,8 @@ export class HomeComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.getUsers(filterValue.trim())
+
+    this.paginator.firstPage();
+    this.getUsers(filterValue, 0, this.pageSize)
   }
 }

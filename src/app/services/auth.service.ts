@@ -16,8 +16,6 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(input: UserLoginInput): Observable<RequestResult<string>> {
-    console.log(input);
-
     return this.http.post<RequestResult<string>>(this.apiUrl, input)
       .pipe(
         tap(resp => {

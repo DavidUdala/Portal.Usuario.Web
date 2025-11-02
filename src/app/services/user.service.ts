@@ -14,9 +14,9 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getBy(term: string): Observable<RequestResult<PagedResult<UserOutput[]>>> {
+  getBy(term: string,  pageNumber: number = 0, pageSize: number = 5): Observable<RequestResult<PagedResult<UserOutput[]>>> {
 
-    return this.http.get<RequestResult<PagedResult<UserOutput[]>>>(`${this.apiUrl}getBy?term=${term}`)
+    return this.http.get<RequestResult<PagedResult<UserOutput[]>>>(`${this.apiUrl}getBy?term=${term}&pageNumber=${pageNumber}&pageSize=${pageSize}`)
       .pipe(
         tap(resp => {
           return resp;
