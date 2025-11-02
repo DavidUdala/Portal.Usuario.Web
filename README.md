@@ -1,59 +1,40 @@
-# PortalUsuarioWeb
+# Projeto do desafio - Portal Usuário
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+Este repositório contém a solução completa para o projeto do Teste Prático — Desenvolvedor Fullstack UDS . A solução consiste em uma Aplicação Web desenvolvida em Angular 19.
 
-## Development server
+## Pré-requisitos
+Certifique-se de que você possui as seguintes ferramentas instaladas em seu ambiente:
 
-To start a local development server, run:
+- [Docker](https://www.docker.com/)
+- [Git](https://git-scm.com/)
 
-```bash
-ng serve
-```
+## Instruções para a Aplicação Web
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Configuração do Ambiente
 
-## Code scaffolding
+1. **Clone o Repositório**
+    ```bash
+    git clone https://github.com/DavidUdala/Portal.Usuario.Web
+    cd seu-repositorio/Portal.Usuario.Web
+    ```
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+2. **Executando com dockerfile**
+    - Na pasta do projeto execute `docker build -t portal-usuario-web .`.
+    - Após finalização execute `docker run -d -p 4000:4000 --name portal-usuario-web portal-usuario-web`.
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Execução da API Web
+1. **Acessar a Aplicação**
+    - Abra o navegador e acesse `http://localhost:4000`.
 
-```bash
-ng generate --help
-```
+## Crie seu usuário
+1. **Clique em "ainda não possui acesso? Crie sua conta agora"**
+<img width="1264" height="1269" alt="image" src="https://github.com/user-attachments/assets/ec361b0d-476e-4edc-b5ea-2baeb7f7125f" />
 
-## Building
+2. **Preencha o formulário e em seguida clique em "Cadastra-se" **
+<img width="1239" height="1129" alt="image" src="https://github.com/user-attachments/assets/0a328c37-0778-4cf2-a976-28a7acb85578" />
 
-To build the project run:
+3. **Ao voltar para tela de login use o seu e-mail cadastrado e a senha**
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+4. **Em seguida você verá que está logado visualizando a lista de usuários cadastrados**
+<img width="1257" height="916" alt="image" src="https://github.com/user-attachments/assets/e665557b-49b5-4af5-9eea-7632a9498e53" />
